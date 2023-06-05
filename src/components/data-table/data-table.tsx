@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TableHeader from './header';
 import { Column, DataMandatory } from './types';
-import { getValue } from './utils';
+import { getValue, sortList } from './utils';
 import { useSearch } from '../../hooks/use-search';
 
 import './styles.css';
@@ -14,12 +14,21 @@ type DataTableProps<T extends DataMandatory, K extends keyof T> = {
   };
 };
 
+interface Sort<K> {
+  order: 'asc' | 'desc';
+  field: K;
+}
+
 const DataTable = <T extends DataMandatory, K extends keyof T>({
   data,
   columns,
   search
 }: DataTableProps<T, K>): JSX.Element => {
   const { results, matches, searchValue, onSearch } = useSearch(data, search?.columns);
+  const [sort, setSort] = useState<Sort<K>>({
+    order: 'asc',
+    field: 'id' as K
+  });
 
   return (
     <div className="flex flex-col gap-3 w-full overflow-hidden">
@@ -40,7 +49,7 @@ const DataTable = <T extends DataMandatory, K extends keyof T>({
         <table className="table">
           <TableHeader columns={columns} />
           <tbody>
-            {results.map((row, index) => (
+            {sortList(results, sort.field, sort.order).map((row, index) => (
               <tr key={`row-${index}`}>
                 {columns.map((column, cellIndex) => {
                   return <td key={`cell-${cellIndex}`}>{getValue(row, column)}</td>;
