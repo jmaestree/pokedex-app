@@ -14,7 +14,7 @@ type DataTableProps<T extends DataMandatory, K extends keyof T> = {
   };
 };
 
-interface Sort<K> {
+export interface Sort<K> {
   order: 'asc' | 'desc';
   field: K;
 }
@@ -47,7 +47,16 @@ const DataTable = <T extends DataMandatory, K extends keyof T>({
       )}
       <div className="w-full overflow-x-auto">
         <table className="table">
-          <TableHeader columns={columns} />
+          <TableHeader
+            columns={columns}
+            sort={sort}
+            onSelect={(field) =>
+              setSort({
+                field,
+                order: sort.order === 'asc' ? 'desc' : 'asc'
+              })
+            }
+          />
           <tbody>
             {sortList(results, sort.field, sort.order).map((row, index) => (
               <tr key={`row-${index}`}>
