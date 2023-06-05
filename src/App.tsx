@@ -34,11 +34,19 @@ function App() {
           columns={[
             {
               key: 'id',
-              title: 'ID'
+              title: 'ID',
+              type: 'id'
             },
             {
               key: 'name',
-              title: 'Name'
+              title: 'Name',
+              type: 'string'
+            },
+            {
+              key: 'image',
+              title: 'Image',
+              type: 'image'
+            },
             },
             {
               key: 'order',
