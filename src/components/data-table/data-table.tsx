@@ -15,18 +15,25 @@ const DataTable = <T extends DataMandatory, K extends keyof T>({
   columns
 }: DataTableProps<T, K>): JSX.Element => {
   return (
-    <table className="table">
-      <TableHeader columns={columns} />
-      <tbody>
-        {data.map((row, index) => (
-          <tr key={`row-${index}`}>
-            {columns.map((column, cellIndex) => {
-              return <td key={`cell-${cellIndex}`}>{getValue(row, column)}</td>;
-            })}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="flex flex-col min-w-full gap-3">
+      <input
+        className="flex self-start min-w-[15rem] text-gray-900 text-sm py-1 px-2 shadow-md rounded border border-gray-300 focus:border-gray-900 focus:accent-gray-900 focus:outline-none focus:ring-gray-900"
+        type="text"
+        placeholder="Search by any field"
+      />
+      <table className="table">
+        <TableHeader columns={columns} />
+        <tbody>
+          {data.map((row, index) => (
+            <tr key={`row-${index}`}>
+              {columns.map((column, cellIndex) => {
+                return <td key={`cell-${cellIndex}`}>{getValue(row, column)}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
