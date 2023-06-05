@@ -63,6 +63,9 @@ function App() {
               type: 'number'
             }
           ]}
+          search={{
+            columns: ['id', 'name', 'base_experience', 'height', 'weight']
+          }}
         />
       </div>
     </main>
