@@ -47,10 +47,20 @@ function App() {
               title: 'Image',
               type: 'image'
             },
+            {
+              key: 'base_experience',
+              title: 'Base Experience',
+              type: 'number'
             },
             {
-              key: 'order',
-              title: 'Image'
+              key: 'height',
+              title: 'Height',
+              type: 'number'
+            },
+            {
+              key: 'weight',
+              title: 'Weight',
+              type: 'number'
             }
           ]}
         />
