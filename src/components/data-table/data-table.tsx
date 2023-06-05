@@ -36,8 +36,8 @@ const DataTable = <T extends DataMandatory, K extends keyof T>({
           </div>
         </div>
       )}
-      <div className="overflow-x-auto">
-        <table className="table ">
+      <div className="w-full overflow-x-auto">
+        <table className="table">
           <TableHeader columns={columns} />
           <tbody>
             {results.map((row, index) => (

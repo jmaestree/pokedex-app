@@ -25,7 +25,7 @@ export function getValue<T extends DataMandatory, K extends keyof T>(obj: T, col
   }
 
   if (type === 'image') {
-    return <img className="h-20 w-20 rounded-full" src={val as string} alt={`${obj.id}`} />;
+    return <img className="w-24 aspect-square rounded-full object-scale-down" src={val as string} alt={`${obj.id}`} />;
   }
 
   return '';

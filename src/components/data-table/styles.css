@@ -1,5 +1,5 @@
 .table {
-    @apply divide-y divide-gray-300 shadow-lg;
+    @apply divide-y divide-gray-300 shadow-lg min-w-full;
 }
 
 thead > tr {
