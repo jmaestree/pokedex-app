@@ -13,7 +13,7 @@ describe('App layout', () => {
   test('renders main content', () => {
     render(<App />);
 
-    const contentElement = screen.getByText(/My app/i);
-    expect(contentElement).toBeInTheDocument();
+    const tableElement = screen.getByRole('table');
+    expect(tableElement).toBeInTheDocument();
   });
 });
