@@ -12,6 +12,7 @@ type DataTableProps<T extends DataMandatory, K extends keyof T> = {
   search?: {
     columns: K[];
   };
+  onSelectItem: (item: T) => void;
 };
 
 export interface Sort<K> {
@@ -22,7 +23,8 @@ export interface Sort<K> {
 const DataTable = <T extends DataMandatory, K extends keyof T>({
   data,
   columns,
-  search
+  search,
+  onSelectItem
 }: DataTableProps<T, K>): JSX.Element => {
   const { results, matches, searchValue, onSearch } = useSearch(data, search?.columns);
   const [sort, setSort] = useState<Sort<K>>({
@@ -59,7 +61,7 @@ const DataTable = <T extends DataMandatory, K extends keyof T>({
           />
           <tbody>
             {sortList(results, sort.field, sort.order).map((row, index) => (
-              <tr key={`row-${index}`}>
+              <tr key={`row-${index}`} onClick={() => onSelectItem(row)}>
                 {columns.map((column, cellIndex) => {
                   return <td key={`cell-${cellIndex}`}>{getValue(row, column)}</td>;
                 })}

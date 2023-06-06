@@ -3,9 +3,15 @@ import useSWR from 'swr';
 import Loader from '../../components/loader';
 import { getAllPokemons } from '../../api/fetcher';
 import { Pokemon } from '../../api/types';
+import { useNavigate } from 'react-router-dom';
 
 const List: React.FC = () => {
   const { data, error, isLoading } = useSWR<Pokemon[]>('/pokemons', getAllPokemons);
+  const navigate = useNavigate();
+
+  function handleSelectedItem(item: Pokemon) {
+    navigate(`/detail/${item.id}`);
+  }
 
   if (isLoading) {
     return (
@@ -61,6 +67,7 @@ const List: React.FC = () => {
       search={{
         columns: ['id', 'name', 'base_experience', 'height', 'weight']
       }}
+      onSelectItem={handleSelectedItem}
     />
   );
 };
