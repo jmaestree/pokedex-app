@@ -1,11 +1,11 @@
 import DataTable from '../../components/data-table/data-table';
 import useSWR from 'swr';
 import Loader from '../../components/loader';
-import fetcher, { urls } from '../../api/fetcher';
+import { getAllPokemons } from '../../api/fetcher';
 import { Pokemon } from '../../api/types';
 
 const List: React.FC = () => {
-  const { data, error, isLoading } = useSWR<Pokemon[]>(urls.getAll, fetcher);
+  const { data, error, isLoading } = useSWR<Pokemon[]>('/pokemons', getAllPokemons);
 
   if (isLoading) {
     return (

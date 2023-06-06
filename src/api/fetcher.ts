@@ -6,6 +6,4 @@ export const urls = {
   getAll: () => `${BASE_URL}/characters`
 } as const;
 
-const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then((res) => res.json());
-
-export default fetcher;
+export const getAllPokemons = () => fetch(urls.getAll()).then((res) => res.json());
