@@ -25,4 +25,36 @@
   a {
     @apply text-blue-600 visited:text-blue-900;
   }
+  
+  .form-control-default {
+    @apply text-gray-900 text-base py-2.5 px-3 shadow-md rounded border border-gray-900 focus:border-gray-900 focus:accent-gray-900 focus:outline-none focus:ring-gray-900;
+  }
+
+  .form-control-valid {
+    @apply shadow-md border border-green-500 focus:border-green-500 focus:accent-green-500 focus:outline-none focus:ring-green-500;
+  }
+
+  .form-control-invalid {
+    @apply shadow-md border border-red-500 focus:border-red-500 focus:accent-red-500 focus:outline-none focus:ring-red-500;
+  }
+
+  input:not([type='checkbox']) {
+    @apply form-control-default;
+
+    &:disabled {
+      @apply bg-gray-200;
+    }
+
+    &[data-form-control-status='Success'] {
+      @apply form-control-valid;
+    }
+
+    &[data-form-control-status='Error'] {
+      @apply form-control-invalid;
+    }
+  }
+
+  [data-form-label-status] {
+    @apply text-sm mb-2.5;
+  }
 }
